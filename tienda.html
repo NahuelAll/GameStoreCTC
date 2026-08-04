@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>GameStore</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script src="https://kit.fontawesome.com/5e44c9a494.js"crossorigin="anonymous"></script> <!-- Pagina de iconos -->
+</head>
+<body>
+	<header>
+		<div class="container-hero">
+			<div class="container hero">
+				<div class="container-logo">
+					<i class="fa-solid fa-shop"></i>
+					<h1 class="logo">GameStore</a></h1>
+				</div>
+			
+				<div class="container-user">
+					<p id="usuarioActual"></p>
+					<i class="fa-solid fa-user"></i>
+					<a href="carrito.html"><i class="fa-solid fa-cart-shopping"></i></a>
+					<div class="content-shopping-cart">
+						<span class="text">Carrito</span>
+					</div>
+				</div>
+			</div>
+		</div>
+			
+			<div class="container-navbar">
+				<nav class="navbar main-container">
+					<i class="fa-solid fa-bars"></i>
+					<ul class="menu">
+						<li><a href="tienda.html">Todos los juegos</a></li>
+						<li><select onchange="filtrarCategoria(this.value)">
+								<option value =""> Seleccione la Categoria</option>
+								<option value ="Accion"> Accion</option>
+								<option value ="Aventura"> Aventura</option>
+								<option value ="Mundo Abierto"> Mundo Abierto</option>
+								<option value ="RPG"> RPG</option>
+								<option value ="Shooter"> Shooter</option>
+								<option value ="Terror"> Terror</option>
+								<option value ="Deportes"> Deportes</option>
+								<option value ="Carreras"> Carreras</option>
+								<option value ="Estrategia"> Estrategia</option>
+								<option value ="Supervivencia"> Supervivencia</option>
+								<option value ="Combate"> Combate</option>
+								<option value ="SANDBOX"> SANDBOX</option>
+								<option value ="MOBA"> MOBA</option>
+								<option value ="Roguelike"> Roguelike</option>
+								<option value ="Arcade"> Arcade</option>
+							</select></li>
+					</ul>
+				</nav>
+					<button id="btn-salir" class="btn btn-primary">Cerrar sesión</button>
+					<button onclick="window.location.href='admin.html'" class="btn btn-primary">Ir a admin</button>
+			</div>
+	</header>
+	<main>
+		<h2>Todos los jueos</h2>
+			<div class="productos-grid" id="contenedor-productos"></div>
+			</div>
+	</main>
+	
+	<script src="scripts/commonFunctions.js"></script>
+	<script src="scripts/page/productos.js"></script>
+	<script src="scripts/page/carrito.js"></script>
+	<script src="scripts/page/tienda.js"></script>
+</body>
+</html>

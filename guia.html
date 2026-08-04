@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Guía de Uso - Gestor de Tareas y Equipos</title>
+	<style>
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background-color: #f5f5dc;
+			margin: 0;
+			padding: 20px;
+			color: #5a4a42;
+			line-height: 1.6;
+		}
+		.container {
+			max-width: 900px;
+			margin: 0 auto;
+			background-color: #fff8e1;
+			border-radius: 8px;
+			padding: 30px;
+			box-shadow: 0 4px 8px rgba(211, 84, 0, 0.1);
+		}
+		h1, h2 {
+			color: #d35400;
+			border-bottom: 2px solid #e67e22;
+			padding-bottom: 10px;
+		}
+		.section {
+			margin: 30px 0;
+			padding: 20px;
+			background-color: #fff3e0;
+			border-left: 5px solid #ffa726;
+			border-radius: 4px;
+		}
+		.step {
+			background-color: #fffaf0;
+			padding: 15px;
+			margin: 10px 0;
+			border-radius: 4px;
+			border-left: 4px solid #ff8c00;
+		}
+		.code {
+			background-color: #f5f5f5;
+			padding: 15px;
+			border-radius: 4px;
+			overflow-x: auto;
+			font-family: 'Courier New', monospace;
+			font-size: 14px;
+			margin: 10px 0;
+		}
+		.warning {
+			background-color: #ffecb3;
+			border-left: 4px solid #ffa000;
+			padding: 15px;
+			border-radius: 4px;
+			margin: 10px 0;
+		}
+		.success {
+			background-color: #e8f5e9;
+			border-left: 4px solid #66bb6a;
+			padding: 15px;
+			border-radius: 4px;
+			margin: 10px 0;
+		}
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin: 15px 0;
+		}
+		th, td {
+			border: 1px solid #ffcc80;
+			padding: 12px;
+			text-align: left;
+		}
+		th {
+			background-color: #ffb347;
+			color: white;
+			font-weight: bold;
+		}
+		tr:nth-child(even) {
+			background-color: #fffaf0;
+		}
+		a {
+			color: #d35400;
+			text-decoration: none;
+			font-weight: 600;
+		}
+		a:hover {
+			color: #ff8c00;
+			text-decoration: underline;
+		}
+		.btn-back {
+			display: inline-block;
+			background-color: #ffb347;
+			color: white;
+			padding: 10px 20px;
+			border-radius: 20px;
+			text-decoration: none;
+			margin: 20px 0;
+		}
+		.btn-back:hover {
+			background-color: #ff8c00;
+		}
+	</style>
+</head> <!-- aclaracion: el stiyle esta directamente sacado de la guia de uso del gestor de tareas que subio el profe-->
+<body>
+	<div class="container">
+		<h1>📖 Guía de Uso </h1>
+		<a href="index.html" class="btn-back">← Volver </a>
+		<div class="section">
+			<h2>¿Primera vez?</h2>
+			<div class="step">
+				<strong>1. Registrarse</strong>
+				<p>Lo primero que debes hacer al ingresar es registrarte con:</p>
+				<ul>
+					<li> Nombre de usuario </li>
+					<li> Correo electronico </li>
+					<li> Contraseña (minimo 8 caracteres)</li>
+				</ul>
+			</div>
+			<div class="step">
+				<strong>2. Iniciar Sesión</strong>
+				<p> Para iniciar Sesión, solo ingresa tu correo y contraseña</p>
+			</div>
+			<div class="step">
+				<strong>3. Comprar</strong>
+				<p>te encontraras en la tienda de juegos, agrega el juego deseado al carrito, aunque el administrador debera haber agregado juegos previamente, puedes filtrar los juegos por categoria</p>
+			</div>
+			<div class="step">
+				<strong>4. Carrito</strong>
+				<p>Para ir al carrito deberas dar clcik en el carrito en la esquina derecha superior, ahí podras cambiar la cantidad de productos que deseas comprar y confirmar tu compra</p>
+			</div>
+		</div>
+		
+		
+		
+		<div class="section">
+			<h2>Informacion del admin</h2>
+			<h3>¿Cómo crear un juego?</h3>
+			<div class="step">
+				<ol>
+					<li> Inicia sesion como admin en login </li>
+					<li>Completa los campos:
+						<ul>
+							<li><strong>Categoria:</strong> La categoria de tu juego</li>
+							<li><strong>Nombre:</strong> nombre de tu juego</li>
+							<li><strong>Descripción:</strong> Detalles completos</li>
+							<li><strong>Precio:</strong> Cuándo debe estar lista</li>
+							<li><strong>IVA: </strong> seleccione IVA, 0, 10%, 22%</li>
+							<li><strong>Stock:</strong> Cantidad de unidades disponibles</li>
+							<li><strong>Imagen:</strong> suba la portada de su juego (tiene algunas en la carpeta img)</li>
+						</ul>
+					</li>
+					<li>por ultimo le das al boton "crear producto"</li>
+				</ol>
+			</div>
+			<h3>¿Cómo editar un juego?</h3>
+			</div>
+			<div class="step">
+				<ol>
+					<li> Inicia sesion como admin en login </li>
+					<li> clcikea editar en el producto deseado </li>
+					<li>Edite su seccion deseada:
+						<ul>
+							<li><strong>Categoria:</strong> La categoria de tu juego</li>
+							<li><strong>Nombre:</strong> nombre de tu juego</li>
+							<li><strong>Descripción:</strong> Detalles completos</li>
+							<li><strong>Precio:</strong> Cuándo debe estar lista</li>
+							<li><strong>IVA: </strong> seleccione IVA, 0, 10%, 22%</li>
+							<li><strong>Stock:</strong> Cantidad de unidades disponibles</li>
+							<li><strong>Imagen:</strong> suba la portada de su juego (tiene algunas en la carpeta img) de nuevo obligatoriamente</li>
+						</ul>
+					</li>
+					<li>Haz clic en "guardar cambios"</li>
+					<li>si desea cancelar haz clic en "cancelar"</li>
+				</ol>
+			</div>
+			<div class="section">
+				<h2>Estructura de datos</h2>
+				<h3>Objetos principales</h3>
+				<h4>usuario</h4>
+				<div class="code">
+{
+	id: 1,
+	nombre: "TuUsuario",
+	email: "TuUsuario@example.com",
+	password: "password123"
+}
+			</div>
+				<h4>admin</h4>
+				<div class="code">
+{
+	id: 0,
+	nombre: "admin",
+	email: "admin@gmail.com",
+	password: "admin1234",
+	rol: admin
+}
+			</div>
+				<h4>producto</h4>
+				<div class="code">
+{
+	id: 1,
+	Categoria: "categoriaElegida"
+	nombre: "juego",
+	Descripción: "Describe tu juego",
+	precio: 123,
+	Iva: 10%,
+	Stock: 10,
+	Imagen: "codigoLargisimo"
+}
+			</div>
+		</div>
+		<div class="section">
+			<h2>Uso de Arrays y Objetos</h2>
+			<h3>¿Por qué arrays y objetos?</h3>
+			<p>Este sistema utiliza arrays y objetos para:</p>
+			<h4>Arrays principales</h4>
+			<ul>
+				<li><strong>usuariosRegistrados</strong> - Almacena múltiples usuarios registrados</li>
+				<li><strong>productos</strong> - Almacena todos los juegos del sistema</li>
+				<li><strong>carrito</strong> - Almacena todos los equipos</li>
+			</ul>
+			<h4>Objetos</h4>
+			<ul>
+				<li><strong>usuario</strong> - Cada usuario es un objeto con propiedades como nombre, correo, etc.</li>
+				<li><strong>admin</strong> - Lo mismo que usuario pero con el rol admin</li>
+				<li><strong>producto</strong> - Los juegos que crea el admin</li>
+			</ul>
+		</div>
+		<div class="section">
+			<h2>❓ Preguntas Frecuentes</h2>
+			<h3>¿Puedo cambiar mi contraseña?</h3>
+			<p>No, actualmente esta version no lo permite, futuramente si</p>
+			<h3>¿Qué pasa si olvido mi contraseña?</h3>
+			<p>Perdiste tu cuenta, deberas crear un usuario nuevo</p>
+			<h3>¿Puedo eliminar un juego?</h3>
+			<p>La opción de eliminar juegos solo la posee el admin, solo puedes quitar un producto de tu carrito, más seguira estando en la tienda hasta que se agote el stock o el admin lo elimine </p>
+			<h3>¿Cuántos juegos puedo crear?</h3>
+			<p>No hay límite, pero localStorage tiene un límite (5MB)</p>
+			<h3>¿Los datos se respaldan?</h3>
+			<p>Los datos se respaldan localmente en tu navegador</p>
+		</div>
+        <a href="register.html" class="btn-back"> ir a registrarte</a>
+    </div>
+</body>

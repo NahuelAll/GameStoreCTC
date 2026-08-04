@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>GameStore</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script src="https://kit.fontawesome.com/5e44c9a494.js"crossorigin="anonymous"></script>
+</head>
+<body>
+	<header>
+		<div class="container-user">
+				<p id="usuarioActual"></p>
+				<i class="fa-solid fa-user"></i>
+		</div>
+		<a class="btn btn-small" href="tienda.html">← Regresar</a>
+		<button id="btn-salir" class="btn btn-small">Cerrar sesión</button>
+	</header>
+	<main>
+	<h2> TU CARRITO </h2>
+	<div id="contenedor-carrito"></div>
+	<div id="resumen-carrito" style="display:none"> <!-- nota, oculto este div para mostrarlo desde el js con todos los datos --> 
+		<hr>
+		<p>Precio base total: <span id="total-base"></span></p> <!-- solo por si las dudas span es para asignarle luego un texto con js, y para hacer memoria es un espacio vacio donde va un valor -->
+		<p>IVA total: <span id="total-iva"></span></p>
+		<p><b>Total final<span id="total-final"></span></b></p> <!-- el <b> solo pone el texto en negrita -->
+		<button id="btn-vaciar" class="btn">Vaciar Carrito</button>
+		<button id="btn-confirmar" class="btn btn-primary"> Confirmar compra </button>
+	</div>
+	</main>
+	<script src="scripts/commonFunctions.js"></script>
+	<script src="scripts/page/productos.js"></script>
+	<script src="scripts/page/carrito.js"></script>
+</body>
+</html>
