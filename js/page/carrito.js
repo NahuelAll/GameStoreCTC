@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-	validateSession();
 	renderizarCarrito();
 	let btnVaciar = document.getElementById("btn-vaciar");
 	if (btnVaciar){

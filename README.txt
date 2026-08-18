@@ -11,21 +11,21 @@ objetivo: crear una tienda de juegos en la cual se puedan crear, eliminar, juego
 - [tienda.html]: Para agregar los juegos al carrito.
 - [carrito.html]: Para confirmar compra y ver los juegos agregados.
 
-## JavaScritp
-- [scripts/commonFunctions.js]:funciones generales y base.
-- [scripts/login.js]: Scripts del login, creacion del admin.
-- [scripts/register.js]: Creacion de los usuarios y registo.
-- [scripts/admin.js]: guardar juegos en el localStorage, scripts del formulario.
-- [scripts/page/productos.js]: calcular precios, imagenes de productos.
-- [scripts/page/carrito.js]: calcular totales, mostrar carrito, agregar, quitar productos etc.
-- [scripts/page/tienda.js]: renderizar los productos en tienda.
+## JavaScript
+- [js/commonFunctions.js]:funciones generales y base.
+- [js/login.js]: js del login, creacion del admin.
+- [js/register.js]: Creacion de los usuarios y registo.
+- [js/admin.js]: guardar juegos en el localStorage, js del formulario.
+- [js/page/productos.js]: calcular precios, imagenes de productos.
+- [js/page/carrito.js]: calcular totales, mostrar carrito, agregar, quitar productos etc.
+- [js/page/tienda.js]: renderizar los productos en tienda.
 
 ## Flujo recomendado
 
 1. Entrar por [index.html].
 2. iniciar sesio como administrador.
-3. Ir a [admin.html]).
-4. Crear juegos en [admin.html].()
+3. Ir a [admin.html].
+4. Crear juegos en [admin.html].
 5. ir a [tienda.html]. (aquí puedes registrarte como usuario si deseas y logearte)
 6. Agregar productos al carrito.
 7. ir a [carrito.html].

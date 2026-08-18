@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-	validateSession();
 	renderizarProductosTienda();
 	let botonSalir = document.getElementById("btn-salir");
 	if (botonSalir) {
