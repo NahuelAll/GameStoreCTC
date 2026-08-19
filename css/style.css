@@ -1,11 +1,15 @@
 /* Estilos generales */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
     background-color: #f5f5dc; /* Beige claro */
     margin: 0;
     padding: 0;
-    color: #5a4a42; /* Marrón claro para texto */
+    color: #fdf1eb; /* Marrón claro para texto */
     line-height: 1.6;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 * {
@@ -16,8 +20,6 @@ body {
 
 h1, h2, h3 {
     color: #d35400; /* Naranja oscuro */
-    border-bottom: 2px solid #e67e22; /* Naranja */
-    padding-bottom: 8px;
 }
 
 h2 {
@@ -75,11 +77,12 @@ h2 {
     transform: translateY(-2px);
 }
 
-.navbar .fa-bars {
-    display: none;
+.nav-item a:hover {
+    border-bottom: 2px solid #e69822; /* Naranja */
+    padding-bottom: 8px;
 }
 
-/*Barra inferior*/
+/*Barra inferior navbar*/
 .bottom-bar {
     background-color: #2b2b2b;
     min-height: 52px;
@@ -731,7 +734,7 @@ nav button {
 }
 
 main {
-  padding: 2em;
+  padding: 1em;
 }
 
 textarea{
@@ -746,42 +749,51 @@ textarea{
     transition: all 0.5s;
 }
 
+/* Bara de busqueda */
+.form-control {
+    min-width: 450px;
+    text-indent: 33px;
+}
+
+.form-control:focus,
+.form-control input {
+    box-shadow: none;
+    border: none;
+    outline: none;
+}
+
 /* Iconos */
-.container-logo {
-	display: flex;
-	align-items: center;
-	gap: 8px;
-	font-size: 25px;
+.bi {
+    position: relative;
 }
 
-.container-logo i {
-	font-size: 48px;
-	color: #d35400;
+.bi-cart3 {
+    font-size: 30px;
+    color: whitesmoke;
+    padding-right: 25px;
 }
 
-.container-logo h1 {
-	text-decoration: none;
-	color: #000;
-	font-size: 48px;
-	text-transform: uppercase;
-	letter-spacing: -1px;
+.bi-person {
+    font-size: 35px;
+    color: whitesmoke;
 }
 
-.fa-user {
-	font-size: 48px;
-	color: #3b519b;
+.bi-search{
+    font-size: 25px;
+    padding: 10px;
+    position: absolute;
+    top: 58px;
+    color: #212121;
 }
 
-.container-user .fa-cart-shopping {
-	font-size: 48px;
-	color: #C4C4B1;
-	padding-left: 16px;
-	cursor: pointer;
-}
-
-.content-shopping-cart {
-	display: flex;
-	flex-direction: column;
+/* carrusel */
+.carrusel{
+    display: flex;
+    width: 100%;
+    max-width: 1920px;
+    position: absolute;
+    overflow: hidden;
+    z-index: 1;
 }
 
 /* Carrito */

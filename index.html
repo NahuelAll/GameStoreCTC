@@ -5,27 +5,29 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>GameStore</title>
 	<link rel="stylesheet" href="css/style.css">
+	
+	<!-- Bootstrap link (css \ iconos) -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg" style="background-color: #333333;" data-bs-theme="light">
-  <div class="container-fluid">
-    <a class="navbar-brand fs-2" href="index.html">
-		<img src="img/logo/logoGS.png" alt="logo" width="150px" height="me-auto">GameStore
-	</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<div class="container-fluid">
+			<a class="navbar-brand fs-2" href="index.html">
+			<img src="img/logo/logoGS.png" alt="logo" width="150px" height="me-auto">GameStore</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 			<li class="nav-item">
 			<a class="nav-link fs-5 fw-bold" href="guia.html">Guia de uso</a>
 		</li>
 		</ul>
 		<form class="d-flex" role="search">
-			<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-			<button class="btn btn-outline-success" type="submit">Search</button>
+			<i class="bi bi-search"></i>
+			<input class="form-control me-auto" type="search" placeholder="Search" aria-label="Search"/>
+			<button class="btn btn-outline-success btn-lg" type="submit">Buscar</button>
 		</form>
 		</div>
 	</div>
@@ -46,31 +48,36 @@
 						<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 				</div>
 				<div class="offcanvas-body">
-					<div class="offcanvas-body">
 						<div class="list-group list-group-flush">
-							<a href="#" class="list-group-item list-group-item-action">Acción</a>
-							<a href="#" class="list-group-item list-group-item-action">Aventura</a>
-							<a href="#" class="list-group-item list-group-item-action">RPG</a>
-            				<a href="#" class="list-group-item list-group-item-action">Carreras</a>
-            				<a href="#" class="list-group-item list-group-item-action">Deportes</a>
-            				<a href="#" class="list-group-item list-group-item-action">Shooter</a>
-            				<a href="#" class="list-group-item list-group-item-action">Estrategia</a>
-            				<a href="#" class="list-group-item list-group-item-action">Mundo abierto</a>
-            				<a href="#" class="list-group-item list-group-item-action">Terror</a>
-            				<a href="#" class="list-group-item list-group-item-action">Supervivencia</a>
-            				<a href="#" class="list-group-item list-group-item-action">Combate</a>
-            				<a href="#" class="list-group-item list-group-item-action">SANDBOX</a>
-            				<a href="#" class="list-group-item list-group-item-action">MOBA</a>
-            				<a href="#" class="list-group-item list-group-item-action">RogueLike</a>
-            				<a href="#" class="list-group-item list-group-item-action">Arcade</a>
+							<a href="#" class="list-group-item list-group-item-action" data-categoria="todos">Todos los juegos</a>
+							<a href="#" class="list-group-item list-group-item-action" data-categoria="accion">Acción</a>
+							<a href="#" class="list-group-item list-group-item-action" data-categoria="aventura">Aventura</a>
+							<a href="#" class="list-group-item list-group-item-action" data-categoria="rpg">RPG</a>
+            				<a href="#" class="list-group-item list-group-item-action" data-categoria="carreras">Carreras</a>
+            				<a href="#" class="list-group-item list-group-item-action" data-categoria="deportes">Deportes</a>
+            				<a href="#" class="list-group-item list-group-item-action" data-categoria="shooter">Shooter</a>
+            				<a href="#" class="list-group-item list-group-item-action" data-categoria="estrategia">Estrategia</a>
+            				<a href="#" class="list-group-item list-group-item-action" data-categoria="mundo-abierto">Mundo abierto</a>
+            				<a href="#" class="list-group-item list-group-item-action" data-categoria="terror">Terror</a>
+            				<a href="#" class="list-group-item list-group-item-action" data-categoria="supervivencia">Supervivencia</a>
+            				<a href="#" class="list-group-item list-group-item-action" data-categoria="combate">Combate</a>
+            				<a href="#" class="list-group-item list-group-item-action" data-categoria="sandbox">SANDBOX</a>
+            				<a href="#" class="list-group-item list-group-item-action" data-categoria="moba">MOBA</a>
+            				<a href="#" class="list-group-item list-group-item-action" data-categoria="roguelike">RogueLike</a>
+            				<a href="#" class="list-group-item list-group-item-action" data-categoria="arcade">Arcade</a>
         				</div>
-    				</div>
 				</div>
 			</div>
+			<button onclick="window.location.href='admin.html'" class="btn btn-primary">Ir a admin</button>
+
+			<button id="btn-salir" class="btn btn-primary">Cerrar sesión</button>
+		
 		</span>
 		<span>
 			<div style="margin: 0 15px">
-			<i class="bi bi-person" style="font-size: 35px; color: whitesmoke;"></i>
+				<a href="carrito.html"><i class="bi bi-cart3"></i></a>
+
+				<i class="bi bi-person"></i>
 				<a class="d-inline text-light" href="login.html" style="padding-right: 10px; border-right: 1px solid #e2e2e2;" id="botonLogin">Iniciar Sesion</a>
 				<a class="d-inline text-light" href="register.html" style="padding-left: 10px;" id="botonRegister">Registrarse</a>
 			</div>
@@ -78,43 +85,30 @@
 	</div>
 </nav>
 
-	<div class="container-hero">
-			<div class="container hero">
-			
-				<div class="container-user">
-					<p id="usuarioActual"></p>
-					<i class="fa-solid fa-user"></i>
-					<a href="carrito.html"><i class="fa-solid fa-cart-shopping"></i></a>
-					<div class="content-shopping-cart">
-						<span class="text">Carrito</span>
-					</div>
-				</div>
-			</div>
+<!-- Seccion de imagenes -->
+<div class="container-hero">
+	<div class="container hero">
+		<div class="carrusel">
+			<h2>FT</h2>
 		</div>
-			
-			<div class="container-navbar">
-				<nav class="navbar main-container">
-					<i class="fa-solid fa-bars"></i>
-					<ul class="menu">
-						<li><a href="index.html">Todos los juegos</a></li>
-						<li><select onchange="filtrarCategoria(this.value)">
-							</select></li>
-					</ul>
-				</nav>
-					<button id="btn-salir" class="btn btn-primary">Cerrar sesión</button>
-					<button onclick="window.location.href='admin.html'" class="btn btn-primary">Ir a admin</button>
-			</div>
+	</div>
+</div>
 
-	<main>
-		<h2>Todos los juegos</h2>
-			<div class="productos-grid" id="contenedor-productos"></div>
-			</div>
-	</main>
-	
-	<script src="js/commonFunctions.js"></script>
-	<script src="js/page/productos.js"></script>
-	<script src="js/page/carrito.js"></script>
-	<script src="js/page/tienda.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<!-- Catalogo de juegos (donde se muestran) -->
+
+<main>
+	<h2>Todos los juegos</h2>
+		<div class="productos-grid" id="contenedor-productos"></div>
+</main>
+
+
+<script src="js/commonFunctions.js"></script>
+<script src="js/page/productos.js"></script>
+<script src="js/page/carrito.js"></script>
+<script src="js/page/tienda.js"></script>
+
+<!-- bootstrap js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
 </body>
 </html>

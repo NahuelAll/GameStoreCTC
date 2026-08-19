@@ -45,3 +45,25 @@ function renderizarProductosTienda(listaProductos = null){
 function comprarProducto(id){ 
 	agregarAlCarrito(id);
 }
+
+// Buscador de productos
+let lista = document.querySelector('#offcanvasWithBothOptions .list-group');
+
+lista.addEventListener("click", function(e) {
+	e.preventDefault();
+
+	if(!e.target.classList.contains('list-group-item')){
+		return;
+	}
+	let categoria = e.target.dataset.categoria;
+
+	if(categoria === "todos"){
+		renderizarProductosTienda(leerProductos());
+	} else {
+		filtrarCategoria(categoria);
+	}
+		// cierra el offcanvas después de elegir (opcional pero recomendable)
+		let offcanvasEl = document.getElementById('offcanvasWithBothOptions');
+		let offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasEl);
+		if (offcanvasInstance) offcanvasInstance.hide();
+	});
