@@ -1,0 +1,2 @@
+let cotizaciones = [];
+let conversion = [];

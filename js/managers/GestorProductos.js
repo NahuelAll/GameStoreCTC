@@ -1,5 +1,5 @@
-import { Producto } from "../js/models/Producto.js";
-import { ManejadorStorage } from "./ManejadorStorage";
+import { Producto } from "../models/Producto.js";
+import { ManejadorStorage } from "./ManejadorStorage.js";
 
 export class GestorProductos {
     #productos;
@@ -11,7 +11,7 @@ export class GestorProductos {
     }
 
     #cargar(){
-        let datos = this.#storage.obtener("producto", []);
+        let datos = this.#storage.obtener("productos", []);
         let productos = [];
 
         for (let i = 0; i < datos.length; i++){
@@ -64,8 +64,16 @@ export class GestorProductos {
 	}
 
     crear(datos){
-        let producto = new Producto(datos);
-        productos.id = this.#generarID();
+        let producto = new Producto(
+            this.#generarID(),
+            datos.nombre,
+            datos.categoria,
+            datos.descripcion,
+            datos.precioBase,
+            datos.iva,
+            datos.stock,
+            datos.imagen
+        );
         this.#productos.push(producto);
         this.#guardar();
 
@@ -85,8 +93,16 @@ export class GestorProductos {
             throw new Error("Producto no encontrado")
         }
 
-        let producto = new Producto(datos);
-        productos.id = id;
+        let producto = new Producto(
+            id,
+            datos.nombre,
+            datos.categoria,
+            datos.descripcion,
+            datos.precioBase,
+            datos.iva,
+            datos.stock,
+            datos.imagen
+        );
         this.#productos[posicion] = producto;
 		this.#guardar();
         return producto;
@@ -100,7 +116,7 @@ export class GestorProductos {
                 break;
             }
         }
-        if (indice === -1) {
+        if (posicion === -1) {
 			return false;
         }
         this.#productos.splice(posicion, 1);

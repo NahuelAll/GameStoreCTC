@@ -28,7 +28,6 @@ export  class Producto {
         if (!Number.isInteger(id) || id <= 0) {
             throw new Error("el id debe ser un entero mayor que cero.");
         }
-
         this.#id = id;
     }
 
@@ -41,7 +40,6 @@ export  class Producto {
         if (nombre.length === 0){
             throw new Error("el producto debe contener un nombre");
         }
-        
         this.#nombre = nombre;
     }
 
@@ -54,7 +52,6 @@ export  class Producto {
         if (categoria.length === 0){
             throw new Error("debe seleccionar una categoria");
         }
-
         this.#categoria = categoria;
     }
 
@@ -76,7 +73,6 @@ export  class Producto {
         if (!Number.isFinite(precioBase) || precioBase < 0){
             throw new Error("debe ser un numero positivo y valido")
         }
-
         this.#precioBase = precioBase;
     }
 
@@ -89,10 +85,15 @@ export  class Producto {
         if(!Number.isFinite(iva) || iva < 0 || iva > 100){
             throw new Error("el iva debe estar entre 0 y 100");
         }
+        this.#iva = iva;
+    }
+
+    get montoIva(){
+        return this.#precioBase * (this.#iva / 100);
     }
 
     get precioFinal(){
-        return this.#precioBase + (this.#precioBase * (this.#iva / 100));
+        return this.#precioBase + this.montoIva;
     }
 
     get stock(){
@@ -101,10 +102,9 @@ export  class Producto {
 
     set stock(valor){
         let stock = Number.parseInt(valor)
-        if(isNaN(this.stock) || stock < 0){
+        if(isNaN(stock) || stock < 0){
             throw new Error("el stock debe ser mayor o igual a 0")
         }
-
         this.#stock = stock
     }
 
@@ -124,7 +124,7 @@ export  class Producto {
             descripcion: this.#descripcion,
             precioBase: this.#precioBase,
             iva: this.#iva,
-            precioFinal: this.PrecioFinal,
+            precioFinal: this.precioFinal,
             stock: this.#stock,
             imagen: this.#imagen
         };
@@ -135,7 +135,7 @@ export  class Producto {
             info.id,
             info.nombre,
             info.categoria,
-            info,descripcion,
+            info.descripcion,
             info.precioBase,
             info.iva,
             info.stock,
