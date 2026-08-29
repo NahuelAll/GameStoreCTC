@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", function () { // nota: esto sirve para cargar todo esto, pero la funcion puntualmente es para verificar si el usuario esta logeado con el rol de admin, si no, lo redirige al login
+import { gestorProductos } from "./actualizarPagina";
+
+document.addEventListener("DOMContentLoaded", function () { 
 	let session = leerDeStorage("sessionData", null);
 	if (!session || session.rol !== "admin") {
 		window.location.href = "login.html";
@@ -18,63 +20,58 @@ document.addEventListener("DOMContentLoaded", function () { // nota: esto sirve 
 			resetearFormulario();
 		});
 	}
+	let botonSalir = document.getElementById("btn-salir");
+	if (botonSalir) {
+		botonSalir.addEventListener("click", function() {
+			logout();
+		});
+	}
 });
 
 function controlProducto (){
 	let idEditando = document.getElementById("idEditando").value;
 	let imagen = document.getElementById("imagen").files[0];
-	let iva = parseFloat(document.getElementById("iva").value);
-	let precioBase = parseFloat(document.getElementById("precio").value);
-	let precioFinal= calcularPrecioFinal(precioBase,iva);
+
 	if(imagen){
 		imagenABase64(imagen, function (base64){
-			guardarProducto(idEditando, base64, precioBase, iva, precioFinal);
+			guardarProducto(idEditando, base64);
 			});
 		}else{
 			let imagenActual = document.getElementById("imagenActual").value;
-			guardarProducto(idEditando, imagenActual, precioBase, iva, precioFinal);
+			guardarProducto(idEditando, imagenActual);
 	}
 }
-function guardarProducto(idEditando, imagen, precioBase, iva, precioFinal){
-	let productos = leerProductos();
-	let producto = {
+function guardarProducto(idEditando, imagen){
+	let datos = {
 		nombre: document.getElementById("nombre").value.trim(),
 		categoria: document.getElementById("categoria").value,
 		descripcion: document.getElementById("descripcion").value.trim(),
-		precioBase: precioBase,
-		iva: iva,
-		precioFinal: precioFinal,
-		stock: parseInt(document.getElementById("stock").value), // parsenInt es para que el numero sea entero y no tenga decimales
+		precioBase: parseFloat(document.getElementById("precio").value),
+		iva: parseFloat(document.getElementById("iva").value),
+		stock: parseInt(document.getElementById("stock").value),
 		imagen: imagen
 	};
-	if(idEditando===""){// si es un producto nuevo, genera el id con la funcion generarIDProducto porque no tiene id
-		producto.id = generarIDProducto(productos);
-		productos.push(producto);
-		alert("producto creado correctamente");
-	}else{ // si ya existe, usa el mismo ID
-		producto.id = parseInt(idEditando);
-		for (let i= 0; i <productos.length; i++){
-			if(productos[i].id === producto.id){ 
-			productos[i] = producto;
-			break;
-			}
+
+	try{
+		if(idEditando===""){ // si es un producto nuevo, GestorProducto le asigna una id.
+			gestorProductos.crear(datos);
+			productos.push(producto);
+			alert("producto creado correctamente");
+		} else{ // si ya existe, usa el mismo ID
+			gestorProductos.editar(parseInt(idEditando), datos)
+			alert("producto modificado correctamente")
 		}
-	alert("producto modificado correctamente")
+	} catch (error) {
+		alert(error.message);
+		return;
 	}
-	guardarProductos(productos);
+	
 	resetearFormulario();
 	renderizarTablaProductos();
 }
 	
 function editarProducto(id){
-	let productos = leerProductos();
-	let producto
-	for (let i = 0; i< productos.length; i++){
-		if(productos[i].id === id){
-			producto = productos[i];
-			break;
-		}
-	}
+	let producto = gestorProductos.obtenerPorID(id);
 	if(!producto){
 		return;
 	}
@@ -85,45 +82,41 @@ function editarProducto(id){
 	document.getElementById("precio").value = producto.precioBase;
 	document.getElementById("iva").value = producto.iva;
 	document.getElementById("stock").value = producto.stock;
-	document.getElementById("imagenActual").value = producto.imagen;//esto solo asigna la imagen en input oculto
+	document.getElementById("imagenActual").value = producto.imagen; // esto solo asigna la imagen en input oculto
 	document.getElementById("preview-imagen").src = producto.imagen; // y esto es lo que la muestra
-	document.getElementById("preview-imagen").style.display = "block"; // esto puede parecer raro pero solo hace visible la imagen que por default la puse oculta
-	document.getElementById("btn-cancelar-creacion").style.display = "inline-block";// solo muestra el boton de cancelar
-	document.getElementById("btn-crear").textContent = "Guardar cambios";// esto solo cambia el texto del boton crear, para mostrar que estas modificando y no creando
+	document.getElementById("preview-imagen").style.display = "block";
+	document.getElementById("btn-cancelar-creacion").style.display = "inline-block";
+	document.getElementById("btn-crear").textContent = "Guardar cambios";
 	actualizarPrecioFinal();
-}//basicamente todo lo mismo
+}
 
-
-
+window.eliminarProducto = eliminarProducto;
 function eliminarProducto (id){
 	if(!confirm("¿estas seguro que queres borrar esto?")){
 		return;
 	}
-	let productos= leerProductos();
-	let productosFiltrados= [];
-	for (let i= 0; i<productos.length; i++){
-		if(productos[i].id !== id){
-			productosFiltrados.push(productos[i]);
-		}
-	}
-	guardarProductos(productosFiltrados);
+	gestorProductos.eliminar(id);
 	renderizarTablaProductos();
 }
 
+window.actualizarPrecioFinal = actualizarPrecioFinal;
 function actualizarPrecioFinal(){
-	let precio=parseFloat(document.getElementById("precio").value)||0;
-	let iva=parseFloat(document.getElementById("iva").value)||0;
-	let finalPrecio=calcularPrecioFinal(precio, iva);
-	document.getElementById("precio-final").textContent= "Precio final con IVA: $"+ finalPrecio.toFixed(2); // nota: toFixed es para saber cuantos decimales mostrar, en este caso 2
+	let precio = parseFloat(document.getElementById("precio").value)||0;
+	let iva = parseFloat(document.getElementById("iva").value)||0;
+	let finalPrecio = precio + precio * (iva / 100);
+	document.getElementById("precio-final").textContent = "Precio final con IVA: $" + finalPrecio.toFixed(2); // nota: toFixed es para saber cuantos decimales mostrar, en este caso 2
 }
 
+window.editarProducto = editarProducto;
 function renderizarTablaProductos(){
-	let productos = leerProductos();
+	let productos = gestorProductos.obtenerTodos();
 	let tbody = document.getElementById("tbody-productos");
+	
 	if(!tbody){
 		return;
 	}
 	tbody.innerHTML="";
+
 	if(productos.length === 0){
 		tbody.innerHTML = "<tr><td colspan='7'>No hay productos cargados.</td></tr>";
 		return;
@@ -155,7 +148,8 @@ function resetearFormulario(){
 	document.getElementById("btn-cancelar-creacion").style.display = "none";
 	document.getElementById("btn-crear").textContent = "Crear producto"
 }
-	
+
+window.previsualizarImagen = previsualizarImagen;	
 function previsualizarImagen(input){
 	if(input.files && input.files[0]){ // nota: verifica si hay un archivo cargado y si hay uno seleccionado
 		let leerArchivo= new FileReader();
@@ -167,15 +161,14 @@ function previsualizarImagen(input){
 	}
 }
 
+function imagenABase64(archivo, callback) {
+	let leerArchivos = new FileReader();
+	leerArchivos.onload = function(e){
+		callback(e.target.result);
+	};
+	leerArchivos.readAsDataURL(archivo); // convierte al archivo a base 64(hablado con pablo y aprobado)
+}
 
 
 
 
-document.addEventListener("DOMContentLoaded", function() {
-	let botonSalir = document.getElementById("btn-salir");
-	if (botonSalir) {
-		botonSalir.addEventListener("click", function() {
-			logout();
-		});
-	}
-});

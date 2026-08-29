@@ -1,22 +1,16 @@
+import { ManejadorStorage } from "./managers/ManejadorStorage.js";
+const storage = new ManejadorStorage();
+
 // LocalStorage
 function guardarEnStorage(clave, valor){
-	localStorage.setItem(clave, JSON.stringify(valor));
+	storage.guardar(clave, valor);
 }
+window.guardarEnStorage = guardarEnStorage;
 
 function leerDeStorage(clave, valorDefecto){
-	let contenido = localStorage.getItem(clave);
-	if(!contenido){
-		return valorDefecto;
-	}
-	
-	try{
-		return JSON.parse(contenido);
-	}
-	catch(e){
-		console.error(e);
-		return valorDefecto;
-	}
+		return storage.obtener(clave, valorDefecto);
 }
+window.leerDeStorage = leerDeStorage;
 
 //generarID (ID del usuario)
 function generarID(lista) {
@@ -27,6 +21,7 @@ function generarID(lista) {
 	let ultimo= lista[lista.length - 1];
 	return (ultimo.id) + 1;
 }
+window.generarID = generarID;
 
 // Validacion
 function validateSession(){
@@ -38,8 +33,14 @@ function validateSession(){
 		window.location.href = "./login.html";
 	}
 }
+window.validateSession = validateSession;
 
 function logout(){
 	guardarEnStorage("sessionData",null);
 	window.location.href = "login.html";
 }
+window.logout = logout;
+
+
+
+

@@ -20,15 +20,14 @@
 	<div id="contenedor-carrito"></div>
 	<div id="resumen-carrito" style="display:none"> <!-- nota, oculto este div para mostrarlo desde el js con todos los datos --> 
 		<hr>
-		<p>Precio base total: <span id="total-base"></span></p> <!-- solo por si las dudas span es para asignarle luego un texto con js, y para hacer memoria es un espacio vacio donde va un valor -->
+		<p>Precio base total: <span id="total-base"></span></p> 
 		<p>IVA total: <span id="total-iva"></span></p>
 		<p><b>Total final<span id="total-final"></span></b></p> <!-- el <b> solo pone el texto en negrita -->
 		<button id="btn-vaciar" class="btn">Vaciar Carrito</button>
 		<button id="btn-confirmar" class="btn btn-primary"> Confirmar compra </button>
 	</div>
 	</main>
-	<script src="js/commonFunctions.js"></script>
-	<script src="js/page/productos.js"></script>
-	<script src="js/page/carrito.js"></script>
+	<script type="module" src="js/commonFunctions.js"></script>
+	<script type="module" src="js/page/carrito.js"></script>
 </body>
 </html>
