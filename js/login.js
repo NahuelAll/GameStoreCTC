@@ -26,13 +26,15 @@ document.addEventListener("DOMContentLoaded", function(){
 			
 			if(usuario.password === document.getElementById("password").value){
 				guardarEnStorage("sessionData", usuario);
-				if (usuario.rol === "admin"){
+				let productoPendiente = leerDeStorage("productoPendiente", null);
+				if(productoPendiente){
+					window.location.href = "index.html";
+				}else if(usuario.rol === "admin"){
 					window.location.href="admin.html"
 				}else {
-						window.location.href="tienda.html"
-					}
-			}
-			else{
+					window.location.href="index.html"
+				}
+			}else {
 				alert("Credenciales incorrectas.");
 				return;
 			}

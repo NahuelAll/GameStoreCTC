@@ -24,16 +24,28 @@ function generarID(lista) {
 window.generarID = generarID;
 
 // Validacion
-function validateSession(){
-	let session = leerDeStorage("sessionData",null);
-	if(session){
-		document.getElementById("usuarioActual").innerHTML = "Bienvenido <b>'" + session.nombre + "'</b>";
-	}
-	else{
-		window.location.href = "./login.html";
+function actualizarUsuarioActual(){
+	let session = leerDeStorage("sessionData", null);
+	let monstrar = document.getElementById("usuarioActual");
+
+	if (session){
+		monstrar.innerHTML = "Bienvenido <b>'" + session.nombre + "'</b>"
+	} else {
+		monstrar.innerHTML = "Invitado - <a href='./login.html'IniciarSession</a>";
 	}
 }
-window.validateSession = validateSession;
+window.actualizarUsuarioActual = actualizarUsuarioActual;
+
+function requiereSession(){
+	let session = leerDeStorage("sessionData",null);
+	if(!session){
+		alert("Necesita iniciar session para continuar");
+		window.location.href = "login.html";
+		return false;
+	}
+	return true;
+}
+window.requiereSession = requiereSession;
 
 function logout(){
 	guardarEnStorage("sessionData",null);

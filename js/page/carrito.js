@@ -1,5 +1,5 @@
-import { gestorCarrito } from "../actualizarPagina";
-import { gestorProductos } from "../actualizarPagina";
+import { gestorCarrito } from "../actualizarPagina.js";
+import { gestorProductos } from "../actualizarPagina.js";
 
 document.addEventListener("DOMContentLoaded", function () {
 	renderizarCarrito();
@@ -36,7 +36,7 @@ function agregarAlCarrito(idProducto){
 	
 	let carrito = gestorCarrito.obtenerCarrito();
 	for(let i = 0; i < carrito.length; i++){
-		if(carritto[i].id === idProducto && carrito[i].cantidad >= producto.stock){
+		if(carrito[i].id === idProducto && carrito[i].cantidad >= producto.stock){
 			alert("no hay mas stock disponible");
 			return;
 		}
@@ -73,6 +73,9 @@ function vaciarCarrito(){
 }
 
 function confirmarCompra(){
+	if(!requiereSession()){
+		return;
+	}
 	let carrito= gestorCarrito.obtenerCarrito();
 	if(carrito.length === 0){
 		alert("el carrito esta vacío");
@@ -114,7 +117,7 @@ function renderizarCarrito(){
 				"<p>Precio base: $" + item.precioBase.toFixed(2) + "</p>" +
 				"<p>IVA (" + item.iva + "%): $" + item.montoIva.toFixed(2) + "</p>" +
 				"<p>Precio final: $" + item.precioFinal.toFixed(2) + "</p>" +
-				"<p>Subtotal: $" + item.ssubtotal.toFixed(2) + "</p>" +
+				"<p>Subtotal: $" + item.subtotal.toFixed(2) + "</p>" +
 			"</div>" +
 			"<div class='carrito-item-acciones'>" +
 				"<button class='btn btn-small' onclick='cambiarCantidad(" + item.id + ", " + (item.cantidad - 1) + ")'>-</button>" +

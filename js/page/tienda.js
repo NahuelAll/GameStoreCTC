@@ -1,7 +1,14 @@
-import { gestorProductos } from "../actualizarPagina";
+import { gestorProductos } from "../actualizarPagina.js";
 
 document.addEventListener("DOMContentLoaded", function() {
 	renderizarProductosTienda();
+
+	let productoPendiente = leerDeStorage("productoPendiente", null);
+	if(productoPendiente){
+		guardarEnStorage("productoPendiente", null);
+		agregarAlCarrito(productoPendiente);
+	}
+
 	let botonSalir = document.getElementById("btn-salir");
 	if (botonSalir) {
 		botonSalir.addEventListener("click", function() {
@@ -46,7 +53,14 @@ function renderizarProductosTienda(listaProductos = null){
 }
 
 window.comprarProducto = comprarProducto;
-function comprarProducto(id){ 
+function comprarProducto(id){
+	let session = leerDeStorage("sessionData", null);
+	if(!session){
+		guardarEnStorage("productoPendiente", id);
+		alert("Debe iniciar session para agregar producto al carrito");
+		window.location.href = "login.html";
+		return;
+	}
 	agregarAlCarrito(id);
 }
 
@@ -68,7 +82,7 @@ if(lista){
 		let categoria = e.target.dataset.categoria;
 
 		if(categoria === "todos"){
-		renderizarProductosTienda(leerProductos());
+		renderizarProductosTienda(gestorProductos.obtenerTodos())
 		} else {
 		filtrarCategoria(categoria);
 		}

@@ -1,4 +1,4 @@
-import { gestorProductos } from "./actualizarPagina";
+import { gestorProductos } from "./actualizarPagina.js";
 
 document.addEventListener("DOMContentLoaded", function () { 
 	let session = leerDeStorage("sessionData", null);
@@ -55,7 +55,6 @@ function guardarProducto(idEditando, imagen){
 	try{
 		if(idEditando===""){ // si es un producto nuevo, GestorProducto le asigna una id.
 			gestorProductos.crear(datos);
-			productos.push(producto);
 			alert("producto creado correctamente");
 		} else{ // si ya existe, usa el mismo ID
 			gestorProductos.editar(parseInt(idEditando), datos)
@@ -168,7 +167,3 @@ function imagenABase64(archivo, callback) {
 	};
 	leerArchivos.readAsDataURL(archivo); // convierte al archivo a base 64(hablado con pablo y aprobado)
 }
-
-
-
-
