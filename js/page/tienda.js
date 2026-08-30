@@ -9,11 +9,34 @@ document.addEventListener("DOMContentLoaded", function() {
 		agregarAlCarrito(productoPendiente);
 	}
 
+	let session = leerDeStorage("sessionData", null);
+	let botonLogin = document.getElementById("botonLogin");
+	let botonRegister = document.getElementById("botonRegister");
 	let botonSalir = document.getElementById("btn-salir");
-	if (botonSalir) {
+	if (botonSalir){
+		if(session){
+			botonSalir.classList.remove("oculto");
+		}else {
+			botonSalir.classList.add("oculto");
+		}
 		botonSalir.addEventListener("click", function() {
 			logout();
 		});
+	}
+
+	if (botonLogin){
+		if(!session){
+			botonLogin.classList.remove("oculto");
+		}else {
+			botonLogin.classList.add("oculto");
+		}
+	}
+	if (botonRegister){
+		if(!session){
+			botonRegister.classList.remove("oculto");
+		}else {
+			botonRegister.classList.add("oculto");
+		}
 	}
 });
 

@@ -766,6 +766,14 @@ textarea{
     outline: none;
 }
 
+.bandeja-inferior {
+    margin: 0 15px;
+}
+
+.oculto {
+    display: none !important;
+}
+
 /* Iconos */
 .bi {
     position: relative;
