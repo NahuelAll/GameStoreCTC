@@ -1,9 +1,11 @@
 import { GestorProductos } from "./managers/GestorProductos.js";
+import { GestorVentas } from "./managers/GestorVentas.js";
 import { GestorCarrito } from "./managers/GestorCarrito.js";
 
 //solucion para evitar que muestre el stock viejo cuando se compra producto.
 export const gestorProductos = new GestorProductos(); 
-export const gestorCarrito = new GestorCarrito(gestorProductos);
+export const gestorVentas = new GestorVentas();
+export const gestorCarrito = new GestorCarrito(gestorProductos, gestorVentas);
 
 inicioProductos();
 

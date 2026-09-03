@@ -1,11 +1,10 @@
 import { gestorProductos } from "./actualizarPagina.js";
 
 document.addEventListener("DOMContentLoaded", function () { 
-	let session = leerDeStorage("sessionData", null);
-	if (!session || session.rol !== "admin") {
-		window.location.href = "login.html";
+	if(!requiereSessionAdmin()){
 		return;
 	}
+	
 	renderizarTablaProductos();
 	let formulario = document.getElementById("form-producto")
 	if (formulario){ // si existe el formulario aplica el if

@@ -47,6 +47,17 @@ function requiereSession(){
 }
 window.requiereSession = requiereSession;
 
+function requiereSessionAdmin(){
+	let session = leerDeStorage("sessionData", null);
+    if (!session || session.rol !== "admin") {
+		alert("debe ser administrador para acceder");
+		window.location.href = "login.html";
+		return false;
+	}
+	return true;
+}
+window.requiereSessionAdmin = requiereSessionAdmin;
+
 function logout(){
 	guardarEnStorage("sessionData",null);
 	window.location.href = "login.html";

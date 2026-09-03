@@ -3,10 +3,12 @@ import { ManejadorStorage } from "./ManejadorStorage.js";
 
 export class GestorCarrito{
     #gestorProductos;
+    #gestorVentas;
     #storage;
 
-    constructor(gestorProductos, storage = new ManejadorStorage()){
+    constructor(gestorProductos, gestorVentas, storage = new ManejadorStorage()){
         this.#gestorProductos = gestorProductos;
+        this.#gestorVentas = gestorVentas;
         this.#storage = storage;
     }
 
@@ -99,17 +101,19 @@ export class GestorCarrito{
         this.#guardar(carrito);
     }
 
-    calcularTotales(){
-        let carrito = this.#cargar();
+    calcularTotales(carrito){
+        if (!carrito) {
+            carrito = this.#cargar();
+        }
         let totalBase = 0;
         let totalIva = 0;
         let totalFinal = 0;
 
         for(let i = 0; i < carrito.length; i++){
-            let item = carrito[i];
-            totalBase += item.precioBase * item.cantidad;
-            totalIva += item.montoIva * item.cantidad;
-            totalFinal += item.subtotal;
+            let producto = carrito[i];
+            totalBase += producto.precioBase * producto.cantidad;
+            totalIva += producto.montoIva * producto.cantidad;
+            totalFinal += producto.subtotal;
         }
         return {
             totalBase,
@@ -138,6 +142,41 @@ export class GestorCarrito{
                 });
             }
         }
+        this.#registrarVenta(carrito);
         this.#guardar([]);
+    }
+
+    #registrarVenta(carrito){
+        if(!this.#gestorVentas){
+            return;
+        }
+
+        let session = this.#storage.obtener("sessionData", null);
+        let totales = this.calcularTotales(carrito);
+        let items = carrito.map(function (item){
+            return{
+                nombre: item.nombre,
+                cantidad: item.cantidad,
+                precioIndv: item.precioFinal,
+                subtotal: item.subtotal
+            };
+        });
+
+        let idUsuario = null;
+        let nombreUsuario = "Invitado";
+
+        if(session){
+            idUsuario = session.id;
+            nombreUsuario = session.nombre;
+        }
+
+        this.#gestorVentas.registrar({
+            idUsuario: idUsuario,
+            nombreUsuario: nombreUsuario,
+            productos: items,
+            totalBase: totales.totalBase,
+            totalIva: totales.totalIva,
+            totalFinal: totales.totalFinal
+        });
     }
 }
