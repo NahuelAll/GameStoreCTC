@@ -32,6 +32,60 @@ function inicioProductos(){
             iva: 22,
             stock: 12,
             imagen: "img/Helldiver2.jpg"
+        },
+        {
+            nombre: "SpeedRunners 2",
+            categoria: "carreras",
+            descripcion: "es un juego de plataformas multijugador frenético donde te enfrentarás a superhéroes en trepidantes carreras haciendo parkour",
+            precioBase: 760,
+            iva: 10,
+            stock: 35,
+            imagen: "img/speedrunners2.jpg"
+        },
+        {
+            nombre: "The Binding of Isaac: Rebirth",
+            categoria: "roguelike",
+            descripcion: "juego de acción y aventura roguelike donde los jugadores guían a Isaac por un mapa procedural para sobrevivir.",
+            precioBase: 329,
+            iva: 0,
+            stock: 20,
+            imagen: "img/Binding-of-isaac-rebirth.jpg"
+        },
+        {
+            nombre: "NBA 2K27 Standar Edition",
+            categoria: "deportes",
+            descripcion: "La intensidad no para y la carrera nunca termina en NBA 2K27. Persigue la grandeza sin descanso.",
+            precioBase: 2699,
+            iva: 22,
+            stock: 42,
+            imagen: "img/2k27.jpg"
+        },
+        {
+            nombre: "Bodycam",
+            categoria: "shooter",
+            descripcion: "Bodycam es el primer FPS táctico multijugador con una vista real de la cámara corporal en Unreal Engine 5.",
+            precioBase: 1030,
+            iva: 22,
+            stock: 5,
+            imagen: "img/bodycam.jpg"
+        },
+        {
+            nombre: "Escape the Backrooms",
+            categoria: "terror",
+            descripcion: "es un juego de terror y exploración cooperativa de 1 a 4 jugadores. Recorre más de 30 niveles de backrooms.",
+            precioBase: 224,
+            iva: 0,
+            stock: 20,
+            imagen: "img/EscapeTheBackrooms.jpg"
+        },
+        {
+            nombre: "Valheim",
+            categoria: "supervivencia",
+            descripcion: "Un brutal juego de supervivencia y exploración multijugador, inspirado en la cultura vikinga.",
+            precioBase: 885,
+            iva: 10,
+            stock: 17,
+            imagen: "img/Valheim.jpg"
         }
     ];
 

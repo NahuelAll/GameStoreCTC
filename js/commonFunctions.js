@@ -50,7 +50,6 @@ window.requiereSession = requiereSession;
 function requiereSessionAdmin(){
 	let session = leerDeStorage("sessionData", null);
     if (!session || session.rol !== "admin") {
-		alert("debe ser administrador para acceder");
 		window.location.href = "login.html";
 		return false;
 	}
