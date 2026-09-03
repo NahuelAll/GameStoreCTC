@@ -60,8 +60,11 @@ export  class Producto {
     }
 
     set descripcion(valor){
-        this.#descripcion = String(valor).trim();
-        
+        let descripcion = String(valor || "").trim();
+        if (descripcion.length === 0 || descripcion === "undefined") {
+            throw new Error("el producto debe contener una descripcion");
+        }
+        this.#descripcion = descripcion;
     }
 
     get precioBase(){

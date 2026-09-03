@@ -63,6 +63,16 @@ export class GestorProductos {
 		});
 	}
 
+    buscador(texto){
+        let frase = String(texto).trim().toLowerCase().replaceAll(" ", "");
+        if(frase === ""){
+            return this.#productos;
+        }
+        return this.#productos.filter(function(producto){
+            return producto.nombre.toLowerCase().replaceAll(" ", "").includes(frase);
+        })
+    }
+
     crear(datos){
         let producto = new Producto(
             this.#generarID(),

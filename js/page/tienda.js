@@ -92,7 +92,31 @@ function filtrarCategoria(categoria) {
 	renderizarProductosTienda(gestorProductos.filtrarPorCategoria(categoria));
 }
 
-// Buscador de productos
+// Barra de busqueda
+let formBuscar = document.getElementById("form-buscar");
+let inputBuscar = document.getElementById("input-buscar");
+
+if(formBuscar && inputBuscar){
+	formBuscar.addEventListener("submit", function(e){
+		e.preventDefault();
+		buscarProducto();
+	});
+
+	inputBuscar.addEventListener("input", function(){
+		buscarProducto();
+	});
+}
+
+function buscarProducto(){
+	let texto = inputBuscar.value;
+	if(texto.trim() === ""){
+		renderizarProductosTienda();
+		return;
+	}
+	renderizarProductosTienda(gestorProductos.buscador(texto));
+}
+
+// Buscador de productos categoria
 let lista = document.querySelector('#offcanvasWithBothOptions .list-group');
 
 if(lista){
