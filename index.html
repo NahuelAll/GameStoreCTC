@@ -29,9 +29,23 @@
 			<input class="form-control me-auto" id="input-buscar" type="search" placeholder="Search" aria-label="Search"/>
 			<button class="btn btn-outline-success btn-lg" type="submit">Buscar</button>
 		</form>
+		<div>
+			<label for="selector-moneda" style="color: aliceblue;">Monedas:</label>
+			<select class="form-select" id="selector-moneda" aria-label="Moneda" style="max-width: 100px;">
+				<option value="UYU">Peso Uruguayo</option>
+				<option value="USD">Dolar</option>
+				<option value="EUR">Euro</option>
+				<option value="ARS">Peso Argentino</option>
+			</select>
+		</div>
 		</div>
 	</div>
 </nav>
+<div id="tasas-referencia" class="tasas-view">
+	<span id="tasa-dolar"></span>
+	<span id="tasa-euro"></span>
+	<span id="tasa-peso-argentino"></span>
+</div>
 <nav class="bottom-bar">
 	<div class="d-flex justify-content-between">
 		<span>

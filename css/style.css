@@ -102,6 +102,17 @@ h2 {
     background-color: #4b18b8;
     color: white;
 }
+
+/* Conversion */
+.tasas-view{
+    background-color: #333333;
+    min-height: 20px;
+    text-align: center;
+    color: white;
+}
+.tasas-view:hover{
+    text-decoration: underline;
+}
 /* menu */
 
 .menu {
