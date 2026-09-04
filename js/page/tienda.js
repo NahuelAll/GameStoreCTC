@@ -1,6 +1,17 @@
 import { gestorProductos } from "../actualizarPagina.js";
+import { cargarTiposCambio, convertirMoneda } from "../models/Moneda.js";
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", async function() {
+	let cotizaciones = await cargarTiposCambio();
+	mostrarTasas(cotizaciones);
+
+	let selector = document.getElementById("selector-moneda");
+	if(selector){
+		selector.addEventListener("change", function(){
+			renderizarProductosTienda();
+		});
+	}
+
 	renderizarProductosTienda();
 
 	let productoPendiente = leerDeStorage("productoPendiente", null);
@@ -40,6 +51,19 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 });
 
+function mostrarTasas(cotizaciones){
+		let dolar = cotizaciones.find(item => item.quote === "USD");
+		let euro = cotizaciones.find(item => item.quote === "EUR");
+		let argentino = cotizaciones.find(item => item.quote === "ARS");
+
+		if(!dolar || !euro || !argentino){
+			return;
+		}
+		document.getElementById("tasa-dolar").textContent =" 1 USD = " + (1 / dolar.rate).toFixed(2) + " UYU |";
+		document.getElementById("tasa-euro").textContent =" 1 EUR = " + (1 / euro.rate).toFixed(2) + " UYU |";
+		document.getElementById("tasa-peso-argentino").textContent =" 1 ARS = " + (1 / argentino.rate).toFixed(2) + " UYU |";
+}
+
 function renderizarProductosTienda(listaProductos = null){
 	let productos;
 	if (listaProductos){
@@ -58,21 +82,31 @@ function renderizarProductosTienda(listaProductos = null){
 	
 	let productosConStock = productos.filter(p => p.stock > 0);
 
-	 for (let i = 0; i < productosConStock.length; i++) { 
-		 let p = productosConStock[i];
-         let card = document.createElement("div");
-		 card.className = "producto";
-				card.innerHTML =
-					"<img src='" + p.imagen + "' style='width:100%; height:300px; object-fit:cover; display:center;' alt='" + p.nombre + "'/>" +
-					"<h3>" + p.nombre + "</h3>" +
-					"<p>Categoria: " + p.categoria + "</p>" +
-					"<p>" + p.descripcion + "</p>" +
-					"<p>Precio: $" + p.precioFinal.toFixed(2) + " (IVA " + p.iva + "% incluido)</p>" +
-					"<p>Stock: " + p.stock + "</p>" +
-					"<button onclick='comprarProducto(" + p.id + ")'>Agregar al carrito</button>";
+	let moneda = document.getElementById("selector-moneda").value;
+	for(let i = 0; i < productosConStock.length; i++){
+		let p = productosConStock[i];
+		let precioConvertido;
+		try{
+			precioConvertido = convertirMoneda(p.precioFinal, moneda);
+		} catch(error){
+			precioConvertido = p.precioFinal;
+			moneda = "UYU";
+		}
 
-				contenedor.appendChild(card);
-	 }
+
+    let card = document.createElement("div");
+	card.className = "producto";
+			card.innerHTML =
+				"<img src='" + p.imagen + "' style='width:100%; height:300px; object-fit:cover; display:center;' alt='" + p.nombre + "'/>" +
+				"<h3>" + p.nombre + "</h3>" +
+				"<p>Categoria: " + p.categoria + "</p>" +
+				"<p>" + p.descripcion + "</p>" +
+				"<p>Precio: $" + precioConvertido.toFixed(2) + " " + moneda + " (IVA " + p.iva + "% incluido)</p>" +
+				"<p>Stock: " + p.stock + "</p>" +
+				"<button onclick='comprarProducto(" + p.id + ")'>Agregar al carrito</button>";
+
+			contenedor.appendChild(card);
+	}
 }
 
 window.comprarProducto = comprarProducto;
