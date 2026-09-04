@@ -29,7 +29,7 @@ function actualizarUsuarioActual(){
 	let monstrar = document.getElementById("usuarioActual");
 
 	if (session){
-		monstrar.innerHTML = "Bienvenido <b>'" + session.nombre + "'</b>"
+		monstrar.innerHTML = "<b>" + session.nombre + "</b>"
 	} else {
 		monstrar.innerHTML = "Invitado - <a href='./login.html'IniciarSession</a>";
 	}

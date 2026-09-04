@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 	monedaActual = leerDeStorage("monedaSeleccionada", "UYU");
 
 	renderizarCarrito();
+	actualizarUsuarioActual()
+
 	let btnVaciar = document.getElementById("btn-vaciar");
 	if (btnVaciar){
 		btnVaciar.addEventListener("click",function(){

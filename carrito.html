@@ -10,15 +10,19 @@
 </head>
 <body>
 	<header class="d-flex justify-content-between align-items-center p-3">
-		<div class="container-user d-flex align-items-center gap-2">
+		<div class="d-flex align-items-center gap-2">
 			<a class="btn btn-primary btn-small" href="index.html">← Regresar</a>
 			<button id="btn-salir" class="btn btn-primary btn-small">Cerrar sesión</button>
+		</div>
+		<div class="d-flex align-items-center">
+			<i class="bi bi-person"></i>
+			<p id="usuarioActual"></p>
 		</div>
 	</header>
 	<main class="container">
 	<h2> TU CARRITO </h2>
 	<div id="contenedor-carrito"></div>
-	<div id="resumen-carrito" style="display:none"> <!-- nota, oculto este div para mostrarlo desde el js con todos los datos --> 
+	<div id="resumen-carrito" style="display:none">
 		<hr>
 		<p class="mb-1">Precio base total: <span id="total-base"></span></p> 
 		<p class="mb-1">IVA total: <span id="total-iva"></span></p>
