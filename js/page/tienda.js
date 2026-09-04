@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", async function() {
 	let botonLogin = document.getElementById("botonLogin");
 	let botonRegister = document.getElementById("botonRegister");
 	let botonSalir = document.getElementById("btn-salir");
+	let botonAdmin = document.getElementById("btn-admin");
+
 	if (botonSalir){
 		if(session){
 			botonSalir.classList.remove("oculto");
@@ -49,6 +51,13 @@ document.addEventListener("DOMContentLoaded", async function() {
 			botonRegister.classList.remove("oculto");
 		}else {
 			botonRegister.classList.add("oculto");
+		}
+	}
+	if (botonAdmin){
+		if(session && session.rol === "admin"){
+			botonAdmin.classList.remove("oculto");
+		} else {
+			botonAdmin.classList.add("oculto");
 		}
 	}
 });

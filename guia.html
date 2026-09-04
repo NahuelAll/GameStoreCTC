@@ -103,6 +103,7 @@
 			background-color: #ff8c00;
 		}
 	</style>
+
 </head>
 <body>
 	<div class="container">
@@ -125,11 +126,15 @@
 			</div>
 			<div class="step">
 				<strong>3. Comprar</strong>
-				<p>te encontraras en la tienda de juegos, agrega el juego deseado al carrito, aunque el administrador debera haber agregado juegos previamente, puedes filtrar los juegos por categoria</p>
+				<p>en la tienda, agrega el juego deseado al carrito, puedes filtrar los juegos por categoria o buscarlos por nombre con la barra de busqueda</p>
 			</div>
 			<div class="step">
-				<strong>4. Carrito</strong>
-				<p>Para ir al carrito deberas dar clcik en el carrito en la esquina derecha superior, ahí podras cambiar la cantidad de productos que deseas comprar y confirmar tu compra</p>
+				<strong>4. Elegir moneda</strong>
+				<p>arriba de la tienda hay un selector de moneda, ahi podes ver los precios en UYU, USD, EUR o ARS. Las cotizaciones se actualizan solas cada vez que entras a la pagina</p>
+			</div>
+			<div class="step">
+				<strong>5. Carrito</strong>
+				<p>Para ir al carrito deberas dar clic en el carrito en la esquina derecha superior, ahí podras cambiar la cantidad de productos que deseas comprar, eliminarlos o vaciar el carrito entero, y por ultimo confirmar tu compra</p>
 			</div>
 		</div>
 		
@@ -155,8 +160,9 @@
 					<li>por ultimo le das al boton "crear producto"</li>
 				</ol>
 			</div>
+		</div>
+		<div class="section">
 			<h3>¿Cómo editar un juego?</h3>
-			</div>
 			<div class="step">
 				<ol>
 					<li> Inicia sesion como admin en login </li>
@@ -176,6 +182,23 @@
 					<li>si desea cancelar haz clic en "cancelar"</li>
 				</ol>
 			</div>
+		</div>
+		<div class="section">
+			<h3>¿Cómo eliminar un juego?</h3>
+			<div class="step">
+				<ol>
+					<li> Inicia sesion como admin en login </li>
+					<li> clcikea eliminar en el producto deseado </li>
+					<li> confirma el mensaje que te aparece </li>
+				</ol>
+			</div>
+		</div>
+		<div class="section">
+			<h3>¿Cómo veo las ventas realizadas?</h3>
+			<div class="step">
+				<p>Como admin podes entrar a <strong>ventas.html</strong> desde ahi vas a ver una tabla con todas las compras que se hicieron: quien compro, cuando, que productos y los totales (base, iva y final)</p>
+			</div>
+		</div>
 			<div class="section">
 				<h2>Estructura de datos</h2>
 				<h3>Objetos principales</h3>
@@ -202,13 +225,42 @@
 				<div class="code">
 {
 	id: 1,
-	Categoria: "categoriaElegida"
 	nombre: "juego",
-	Descripción: "Describe tu juego",
-	precio: 123,
-	Iva: 10%,
-	Stock: 10,
-	Imagen: "codigoLargisimo"
+	categoria: "categoriaElegida",
+	descripcion: "Describe tu juego",
+	precioBase: 123,
+	iva: 10,
+	precioFinal: 135.3,
+	stock: 10,
+	imagen: "codigoLargisimo"
+}
+			</div>
+				<h4>producto en el carrito</h4>
+				<div class="code">
+{
+	id: 1,
+	nombre: "juego",
+	categoria: "categoriaElegida",
+	precioBase: 123,
+	iva: 10,
+	precioFinal: 135.3,
+	imagen: "codigoLargisimo",
+	cantidad: 2
+}
+			</div>
+				<h4>venta</h4>
+				<div class="code">
+{
+	id: 1,
+	idUsuario: 2,
+	nombreUsuario: "TuUsuario",
+	productos: [
+		{ nombre: "juego", cantidad: 2, precioIndv: 135.3, subtotal: 270.6 }
+	],
+	totalBase: 246,
+	totalIva: 24.6,
+	totalFinal: 270.6,
+	fecha: "2026-09-04T00:00:00.000Z"
 }
 			</div>
 		</div>
@@ -220,13 +272,33 @@
 			<ul>
 				<li><strong>usuariosRegistrados</strong> - Almacena múltiples usuarios registrados</li>
 				<li><strong>productos</strong> - Almacena todos los juegos del sistema</li>
-				<li><strong>carrito</strong> - Almacena todos los equipos</li>
+				<li><strong>carrito</strong> - Almacena los productos que agrego cada usuario (cada usuario logeado tiene su propio carrito)</li>
+				<li><strong>ventas</strong> - Almacena todas las compras confirmadas</li>
 			</ul>
 			<h4>Objetos</h4>
 			<ul>
 				<li><strong>usuario</strong> - Cada usuario es un objeto con propiedades como nombre, correo, etc.</li>
 				<li><strong>admin</strong> - Lo mismo que usuario pero con el rol admin</li>
 				<li><strong>producto</strong> - Los juegos que crea el admin</li>
+				<li><strong>venta</strong> - Se crea cuando un usuario confirma la compra, guarda que compro, cuanto y cuando</li>
+			</ul>
+		</div>
+		<div class="section">
+			<h2>Uso de Clases</h2>
+			<h3>¿Por qué clases?</h3>
+			<p>Ademas de los arrays y objetos, el sistema usa clases de JavaScript para que cada dato se valide solo (por ejemplo, no te deja crear un producto sin nombre o con stock negativo) y para separar la logica de guardar/leer del resto del codigo.</p>
+			<h4>Modelos (representan un dato)</h4>
+			<ul>
+				<li><strong>Producto</strong> - un juego, calcula solo su IVA y su precio final</li>
+				<li><strong>ProductoCarrito</strong> - un producto ya agregado al carrito, con su cantidad y subtotal</li>
+				<li><strong>Venta</strong> - una compra confirmada, con los productos y los totales</li>
+			</ul>
+			<h4>Gestores (manejan los datos)</h4>
+			<ul>
+				<li><strong>GestorProductos</strong> - crea, edita, elimina, filtra por categoria y busca productos</li>
+				<li><strong>GestorCarrito</strong> - agrega, elimina y cambia cantidad de productos del carrito, calcula los totales y confirma la compra</li>
+				<li><strong>GestorVentas</strong> - registra y obtiene las ventas realizadas</li>
+				<li><strong>ManejadorStorage</strong> - es el unico que habla directamente con el localStorage, los gestores se lo piden a el</li>
 			</ul>
 		</div>
 		<div class="section">
@@ -238,9 +310,13 @@
 			<h3>¿Puedo eliminar un juego?</h3>
 			<p>La opción de eliminar juegos solo la posee el admin, solo puedes quitar un producto de tu carrito, más seguira estando en la tienda hasta que se agote el stock o el admin lo elimine </p>
 			<h3>¿Cuántos juegos puedo crear?</h3>
-			<p>No hay límite, pero localStorage tiene un límite (5MB)</p>
+			<p>No hay limite !!</p>
 			<h3>¿Los datos se respaldan?</h3>
 			<p>Los datos se respaldan localmente en tu navegador</p>
+			<h3>¿En que moneda estan los precios?</h3>
+			<p>Por defecto en pesos uruguayos (UYU), pero podes cambiar la moneda desde el selector de la tienda para verlos en USD, EUR o ARS</p>
+			<h3>¿Puedo ver mis compras anteriores?</h3>
+			<p>Por ahora el historial de ventas solo lo puede ver el admin, desde ventas.html</p>
 		</div>
         <a href="register.html" class="btn-back"> ir a registrarte</a>
     </div>
