@@ -4,25 +4,26 @@
 	<meta charset="UTF-8">
 	<title>GameStore</title>
 	<link rel="stylesheet" href="css/style.css">
-	<script src="https://kit.fontawesome.com/5e44c9a494.js"crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
-	<header>
-		<div class="container-user">
-				<p id="usuarioActual"></p>
+	<header class="d-flex justify-content-between align-items-center p-3">
+		<div class="container-user d-flex align-items-center gap-2">
+				<p id="usuarioActual" class="mb-0"></p>
 				<i class="fa-solid fa-user"></i>
 		</div>
-		<a class="btn btn-small" href="index.html">← Regresar</a>
+		<a class="btn btn-primary btn-small" href="index.html">← Regresar</a>
 		<button id="btn-salir" class="btn btn-small">Cerrar sesión</button>
 	</header>
-	<main>
+	<main class="container">
 	<h2> TU CARRITO </h2>
 	<div id="contenedor-carrito"></div>
 	<div id="resumen-carrito" style="display:none"> <!-- nota, oculto este div para mostrarlo desde el js con todos los datos --> 
 		<hr>
-		<p>Precio base total: <span id="total-base"></span></p> 
-		<p>IVA total: <span id="total-iva"></span></p>
-		<p><b>Total final<span id="total-final"></span></b></p> <!-- el <b> solo pone el texto en negrita -->
+		<p class="mb-1">Precio base total: <span id="total-base"></span></p> 
+		<p class="mb-1">IVA total: <span id="total-iva"></span></p>
+		<p class="mb-1"><b>Total Final: <span id="total-final"></span></b></p>
 		<button id="btn-vaciar" class="btn">Vaciar Carrito</button>
 		<button id="btn-confirmar" class="btn btn-primary"> Confirmar compra </button>
 	</div>

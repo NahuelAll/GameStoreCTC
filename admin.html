@@ -10,14 +10,14 @@
 </head>
 <body>
 	<button id="btn-salir" class="btn btn-primary btn-small">Cerrar sesión</button>	
-	<div id="CrearObjetos" class="container form-container">
+	<div id="CrearObjetos" class="container form-container mt-4">
 		<h2>Craea el producto</h2>
 		<input type="hidden" id="idEditando" value="" />
 		<input type="hidden" id="imagenActual" value="" />
 		<form id="form-producto">
-			<div class="form-group">
-				<label for="categoria"> Categoria</label>
-				<select id="categoria">
+			<div class="mb-3">
+				<label for="categoria" class="form-label"> Categoria</label>
+				<select id="categoria" class="form-select">
 					<option value =""> Seleccione la Categoria</option>
 					<option value ="accion"> Accion</option>
 					<option value ="aventura"> Aventura</option>
@@ -36,45 +36,48 @@
 					<option value ="arcade"> Arcade</option>
 				</select>
 			</div>
-			<div class="form-group">
-				<label for="nombre"> Nombre del producto</label>
-				<input type="text" id="nombre" required>
+			<div class="mb-3">
+				<label for="nombre" class="form-label"> Nombre del producto</label>
+				<input type="text" class="form-control" id="nombre" required>
 			</div>
-			<div class="form-group">
-				<label for="descripcion"> descripcion del producto </label>
-				<textarea id="descripcion" placeholder="Describe el producto" required></textarea>
+				<div class="mb-3">
+				<label for="descripcion" class="form-label"> descripcion del producto </label>
+				<textarea  class="form-select" id="descripcion" placeholder="Describe el producto" required></textarea>
 			</div>
-			<div class="form-group">
-				<label for="precio"> Precio del producto </label>
-				<input type="number" id="precio" min="0" placeholder="$$$ en dolares" required oninput="actualizarPrecioFinal()"><!--el precio se actualice sin necesidad de un boton para calcular el iva -->
+			<div class="mb-3">
+				<label for="precio" class="form-label"> Precio del producto </label>
+				<input type="number" id="precio" class="form-control" min="0" placeholder="$$$ en dolares" required oninput="actualizarPrecioFinal()"><!--el precio se actualice sin necesidad de un boton para calcular el iva -->
 			</div>
-			<div class="form-group">
-				<label for="iva"> Seleccione el IVA </label>
-				<select id="iva" onchange="actualizarPrecioFinal()" required>
+				<div class="mb-3">
+				<label for="iva" class="form-label"> Seleccione el IVA </label>
+				<select id="iva" class="form-select" onchange="actualizarPrecioFinal()" required>
 					<option value="22">22% (Maximo)</option>
 					<option value="10">10% (Minimo)</option>
 					<option value="0">0% (Exento)</option>
 				</select>
 			</div>
-			<div class="form-group">
-				<p id="precio-final"></p>
+				<div class="mb-3">
+				<p id="precio-final" class="fw-bold"></p>
 			</div>
-			<div class="form-group">
-				<label for="stock"> Unidades disponibles: </label>
-				<input type="number" id="stock"  min="0" required>
+			<div class="mb-3">
+				<label for="stock" class="form-label"> Unidades disponibles: </label>
+				<input type="number" id="stock" class="form-control" min="0" required>
 			</div>
-			<div class="form-group">
-				<label for="imagen"> Imagen del producto </label>
-				<input id="imagen" type="file" accept="image/*" required onchange="previsualizarImagen(this)"> 
-				<img id="preview-imagen" style="display:none;width:100px;">
+			<div class="mb-3">
+				<label for="imagen" class="form-label"> Imagen del producto </label>
+				<input id="imagen"class="form-control" type="file" accept="image/*" required onchange="previsualizarImagen(this)"> 
+				<img id="preview-imagen" style="display:none;width:100px;" class="mt-2">
 			</div>
-			<button id="btn-crear" type="submit" class="btn btn-primary">Crear producto</button><br>
-			<button id="btn-cancelar-creacion" type="submit" class="btn btn-primary" style="display:none;">Cancelar</button>
-			<button class="btn btn-primary" onclick="window.location.href='index.html'" id="botonLogin">Tienda</button>
-			<button class="btn btn-primary" onclick="window.location.href='ventas.html'" id="botonVentas">Ver ventas</button>
+			<div class:"d-flex gap-2">
+				<button id="btn-crear" type="submit" class="btn btn-primary">Crear producto</button><br>
+				<button id="btn-cancelar-creacion" type="submit" class="btn btn-primary" style="display:none;">Cancelar</button>
+				<button class="btn btn-primary" onclick="window.location.href='index.html'" id="botonLogin">Tienda</button>
+				<button class="btn btn-primary" onclick="window.location.href='ventas.html'" id="botonVentas">Ver ventas</button>
+			</div>
+			
 		</form>
 		<h2> Objetos creados </h2>
-		<table border="1" class="table">
+		<table border="1" class="table table-striped table-hover">
 			<thead>
 				<tr>
 					<th>Categoria</th>
