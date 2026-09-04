@@ -135,6 +135,7 @@ export class GestorCarrito{
                 this.#gestorProductos.editar(producto.id, {
                     nombre: producto.nombre,
                     categoria: producto.categoria,
+                    descripcion: producto.descripcion,
                     precioBase: producto.precioBase,
                     iva: producto.iva,
                     stock: producto.stock - carrito[i].cantidad,

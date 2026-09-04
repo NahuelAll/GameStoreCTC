@@ -1,7 +1,13 @@
 import { gestorCarrito } from "../actualizarPagina.js";
 import { gestorProductos } from "../actualizarPagina.js";
+import { convertirMoneda, cargarTiposCambio } from "../models/Moneda.js";
 
-document.addEventListener("DOMContentLoaded", function () {
+let monedaActual = "UYU";
+
+document.addEventListener("DOMContentLoaded", async function () {
+	await cargarTiposCambio();
+	monedaActual = leerDeStorage("monedaSeleccionada", "UYU");
+
 	renderizarCarrito();
 	let btnVaciar = document.getElementById("btn-vaciar");
 	if (btnVaciar){
@@ -15,9 +21,15 @@ document.addEventListener("DOMContentLoaded", function () {
 			confirmarCompra();
 		});
 	}
+	let session = leerDeStorage("sessionData", null);
 	let botonSalir = document.getElementById("btn-salir");
 	if (botonSalir){
-		botonSalir.addEventListener("click",function(){
+		if(session){
+			botonSalir.classList.remove("oculto");
+		}else {
+			botonSalir.classList.add("oculto");
+		}
+		botonSalir.addEventListener("click", function() {
 			logout();
 		});
 	}
@@ -109,6 +121,20 @@ function renderizarCarrito(){
 		return;
 	}
 
+	let moneda = monedaActual;
+	try{
+		convertirMoneda(1, moneda);
+	} catch(error){
+		moneda = "UYU";
+	}
+
+	let sufijo;
+	if(moneda === "UYU"){
+		sufijo = "";
+	} else {
+		sufijo = " " + moneda;
+	}
+
 	for (let i= 0; i < carrito.length; i++){
 		let item = carrito[i];
 		let fila = document.createElement("div");
@@ -117,10 +143,10 @@ function renderizarCarrito(){
 			"<img src='" + item.imagen + "'style='width:80px; object-fit:cover;'/>"+
 			"<div class='carrito-item-info'>" +
 				"<h3>" + item.nombre + "</h3>" +
-				"<p>Precio base: $" + item.precioBase.toFixed(2) + "</p>" +
-				"<p>IVA (" + item.iva + "%): $" + item.montoIva.toFixed(2) + "</p>" +
-				"<p>Precio final: $" + item.precioFinal.toFixed(2) + "</p>" +
-				"<p>Subtotal: $" + item.subtotal.toFixed(2) + "</p>" +
+				"<p>Precio base: $" + convertirMoneda(item.precioBase, moneda).toFixed(2) + sufijo + "</p>" +
+				"<p>IVA (" + item.iva + "%): $" + convertirMoneda(item.montoIva, moneda).toFixed(2) + sufijo + "</p>" +
+				"<p>Precio final: $" + convertirMoneda(item.precioFinal, moneda).toFixed(2) + sufijo + "</p>" +
+				"<p>Subtotal: $" + convertirMoneda(item.subtotal, moneda).toFixed(2) + sufijo + "</p>" +
 			"</div>" +
 			"<div class='carrito-item-acciones'>" +
 				"<button class='btn btn-small' onclick='cambiarCantidad(" + item.id + ", " + (item.cantidad - 1) + ")'>-</button>" +
@@ -135,7 +161,7 @@ function renderizarCarrito(){
 	
 	let resumen = document.getElementById("resumen-carrito");
 	resumen.style.display = "block";
-	document.getElementById("total-base").textContent = "$" + totales.totalBase.toFixed(2);
-	document.getElementById("total-iva").textContent = "$" + totales.totalIva.toFixed(2);
-	document.getElementById("total-final").textContent = "$" + totales.totalFinal.toFixed(2);
+	document.getElementById("total-base").textContent = "$" + convertirMoneda(totales.totalBase, moneda).toFixed(2) + sufijo;
+	document.getElementById("total-iva").textContent = "$" + convertirMoneda(totales.totalIva, moneda).toFixed(2) + sufijo;
+	document.getElementById("total-final").textContent = "$" + convertirMoneda(totales.totalFinal, moneda).toFixed(2) + sufijo;
 }

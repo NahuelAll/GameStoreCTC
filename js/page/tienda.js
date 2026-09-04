@@ -7,7 +7,9 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	let selector = document.getElementById("selector-moneda");
 	if(selector){
+		selector.value = leerDeStorage("monedaSeleccionada", "UYU");
 		selector.addEventListener("change", function(){
+			guardarEnStorage("monedaSeleccionada", selector.value);
 			renderizarProductosTienda();
 		});
 	}
