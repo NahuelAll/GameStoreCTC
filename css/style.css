@@ -218,6 +218,14 @@ h2 {
 table {
 	font-size: 137.5%;
 }
+
+table td, table th {
+	white-space: nowrap;
+}
+#tbody-ventas td:nth-child(4) {
+	white-space: normal;
+}
+
 /* Botones */
 .btn {
     display: inline-block;
@@ -301,43 +309,6 @@ table {
 .dashboard-card p {
     margin: 15px 0;
     font-size: 14px;
-}
-
-
-/* Encabezado */
-.container-hero {
-	background-color:#94682b;
-}
-
-.hero {
-	display: flex;
-	justify-content: space-between;
-	align-content: center;
-	padding: 32px 0;
-}
-
-.hero-header {
-	background: linear-gradient(135deg,2F2C1E,453E2B);
-	color:white;
-	padding-bottom:60px;
-}
-
-.hero-content {
-	text-align:center;
-	padding:80px 20px;
-}
-
-.hero-content h2 {
-	font-size:4rem;
-	color:white;
-	border:none;
-	margin-bottom:20px;
-} 
-
-.hero-content p {
-	font-size:1.8rem;
-	color:#ddd;
-	margin-bottom:30px;
 }
 
 /* productos */
@@ -776,6 +747,42 @@ textarea{
     color: #212121;
 }
 
+/* Encabezado */
+.container-hero {
+	background-color:#94682b;
+}
+
+.hero {
+	display: flex;
+	justify-content: space-between;
+	align-content: center;
+	padding: 32px 0;
+}
+
+.hero-header {
+	background: linear-gradient(135deg,2F2C1E,453E2B);
+	color:white;
+	padding-bottom:60px;
+}
+
+.hero-content {
+	text-align:center;
+	padding:80px 20px;
+}
+
+.hero-content h2 {
+	font-size:4rem;
+	color:white;
+	border:none;
+	margin-bottom:20px;
+} 
+
+.hero-content p {
+	font-size:1.8rem;
+	color:#ddd;
+	margin-bottom:30px;
+}
+
 /* carrusel */
 .carrusel{
     display: flex;
@@ -784,6 +791,18 @@ textarea{
     position: absolute;
     overflow: hidden;
     z-index: 1;
+}
+
+#carouselExampleAutoplaying {
+	max-height: 650px;
+	overflow: hidden;
+}
+
+#carouselExampleAutoplaying .carousel-item img {
+	width: 100%;
+	height: 650px;
+	object-fit:fill;
+	object-position: center;
 }
 
 /* Carrito */

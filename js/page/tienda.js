@@ -105,7 +105,7 @@ function renderizarProductosTienda(listaProductos = null){
 				"<p>" + p.descripcion + "</p>" +
 				"<p>Precio: $" + precioConvertido.toFixed(2) + " " + moneda + " (IVA " + p.iva + "% incluido)</p>" +
 				"<p>Stock: " + p.stock + "</p>" +
-				"<button onclick='comprarProducto(" + p.id + ")'>Agregar al carrito</button>";
+				"<button onclick='comprarProducto(" + p.id + ")' aria-label='Agregar " + p.nombre + "agregar al carrito. Precio " + precioConvertido.toFixed(2) + " " + moneda + ". Stock: " + p.stock + " unidades.'>Agregar al carrito</button>";
 
 			contenedor.appendChild(card);
 	}

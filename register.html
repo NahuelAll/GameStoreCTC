@@ -10,26 +10,26 @@
 	
 </head>
 <body>
-	<a class="btn btn-outline-primary btn-small" href="index.html">← Regresar</a>
+	<a class="btn btn-outline-primary btn-small" href="index.html"><span aria-hidden="true">← </span>Regresar</a>
 	<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
 		<div id="registro" class="card p-4 shadow">
 			<h2>Registro</h2>
 			<form id="form-registro">
 				<div class="mb-3">
 					<label for="username" class="form-label">Usuario: </label>
-					<input class="form-control" type="text" minlength="2" maxlength="30" id="username" placeholder="Nombre" required>
+					<input class="form-control" type="text" minlength="2" maxlength="30" id="username" placeholder="Nombre" aria-label="nombre" required>
 				</div>
 				<div class="mb-3">
-					<label for="email" class="form-label">Correo: </label>
-					<input class="form-control" type="email" id="email" placeholder="nombre@correo.com" required>
+					<label for="email" class="form-label" aria-label="correo electronico">Correo: </label>
+					<input class="form-control" type="email" id="email" placeholder="nombre@correo.com" aria-label="correo electronico" required>
 				</div>
 				<div class="mb-3">
 					<label for="password" class="form-label">Contraseña: </label>
 					<input class="form-control" type="password" minlength="4" maxlength="32" id="password" placeholder="Contraseña" required>
 				</div>
 				
-				<button type="submit" class="btn btn-primary">Registrarse</button>
-				<button class="btn btn-secondary" onclick="window.location.href='login.html'">Ya tengo una cuenta</button>
+				<button type="submit" class="btn btn-primary" aria-label="boton registrarse">Registrarse</button>
+				<button class="btn btn-secondary" onclick="window.location.href='login.html'" aria-label="boton ya tengo cuenta">Ya tengo una cuenta</button>
 			</form>
 		</div>
 	</div>

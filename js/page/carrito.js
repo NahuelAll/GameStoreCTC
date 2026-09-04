@@ -142,7 +142,7 @@ function renderizarCarrito(){
 		let fila = document.createElement("div");
 		fila.className ="carrito-item";
 		fila.innerHTML =
-			"<img src='" + item.imagen + "'style='width:80px; object-fit:cover;'/>"+
+			"<img src='" + item.imagen + "' alt='' style='width:80px; object-fit:cover;'/>"+
 			"<div class='carrito-item-info'>" +
 				"<h3>" + item.nombre + "</h3>" +
 				"<p>Precio base: $" + convertirMoneda(item.precioBase, moneda).toFixed(2) + sufijo + "</p>" +
@@ -151,10 +151,10 @@ function renderizarCarrito(){
 				"<p>Subtotal: $" + convertirMoneda(item.subtotal, moneda).toFixed(2) + sufijo + "</p>" +
 			"</div>" +
 			"<div class='carrito-item-acciones'>" +
-				"<button class='btn btn-small' onclick='cambiarCantidad(" + item.id + ", " + (item.cantidad - 1) + ")'>-</button>" +
-				"<span>" + item.cantidad + "</span>" +
-				"<button class='btn btn-small' onclick='cambiarCantidad(" + item.id + ", " + (item.cantidad + 1) + ")'>+</button>" +
-				"<button class='btn btn-primary btn-small' onclick='eliminarDelCarrito(" + item.id + ")'>Eliminar</button>" +
+				"<button class='btn btn-small' aria-label='Disminuir cantidad de " + item.nombre + "' onclick='cambiarCantidad(" + item.id + ", " + (item.cantidad - 1) + ")'>-</button>" +
+				"<span aria-label='Cantidad: " + item.cantidad + "'>" + item.cantidad + "</span>" +
+				"<button class='btn btn-small' aria-label='Aumentar cantidad de " + item.nombre + "' onclick='cambiarCantidad(" + item.id + ", " + (item.cantidad + 1) + ")'>+</button>" +
+				"<button class='btn btn-primary btn-small' aria-label='Eliminar " + item.nombre + " del carrito' onclick='eliminarDelCarrito(" + item.id + ")'>Eliminar</button>" +
 			"</div>";
 		contenedor.appendChild(fila);
 	}

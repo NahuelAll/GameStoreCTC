@@ -15,7 +15,7 @@
 		<div class="container-fluid">
 			<a class="navbar-brand fs-2" href="index.html">
 			<img src="img/logo/logoGS.png" alt="logo" width="150px" height="me-auto">GameStore</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Navegar">
 			<span class="navbar-toggler-icon"></span>
 			</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -24,10 +24,10 @@
 			<a class="nav-link fs-5 fw-bold" href="guia.html">Guia de uso</a>
 		</li>
 		</ul>
-		<form class="d-flex" role="search" id="form-buscar">
-			<i class="bi bi-search"></i>
-			<input class="form-control me-auto" id="input-buscar" type="search" placeholder="Search" aria-label="Search"/>
-			<button class="btn btn-outline-success btn-lg" type="submit">Buscar</button>
+		<form class="d-flex" role="search" id="form-buscar" aria-hidden="true">
+			<i class="bi bi-search" aria-hidden="true"></i>
+			<input class="form-control me-auto" id="input-buscar" type="search" placeholder="Search" aria-label="barra buscador"/>
+			<button class="btn btn-outline-success btn-lg" type="submit" aria-label="boton buscar">Buscar</button>
 		</form>
 		<div class="d-flex align-items-center gap-2">
 			<label for="selector-moneda" class="mb-0" style="color: white;"></label>
@@ -50,7 +50,7 @@
 	<div class="d-flex justify-content-between">
 		<span>
 			<button class="btn btn-primary text-bg-dark p-2 border border-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-			<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+			<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16" aria-hidden="true">
 			<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
 			</svg>
 			Categorias
@@ -59,7 +59,7 @@
 			<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
 				<div class="offcanvas-header">
 					<h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Categorias de juegos</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+						<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
 				</div>
 				<div class="offcanvas-body">
 						<div class="list-group list-group-flush">
@@ -82,22 +82,20 @@
         				</div>
 				</div>
 			</div>
-			<button onclick="window.location.href='admin.html'" class="btn btn-primary">Ir a admin</button>
+			<button onclick="window.location.href='admin.html'" class="btn btn-primary" aria-label="panel de administrador">Ir a admin</button>
 
 			
 		
 		</span>
 		<span class ="bandeja-inferior">
 			<div>
-				<a href="carrito.html"><i class="bi bi-cart3"></i></a>
+				<a href="carrito.html" aria-label="Ver carrito"><i class="bi bi-cart3" aria-hidden="true"></i></a>
 
-				<i class="bi bi-person"></i>
+				<i class="bi bi-person" aria-hidden="true"></i>
 				<button class="btn btn-outline-primary" id="btn-salir">Cerrar sesion</button>
-				<!-- <button class="btn btn-primary" href="login.html" style="padding-right: 10px;" id="botonLogin">Iniciar Sesion</button>
-				<button class="btn btn-primary" href="register.html" style="padding-left: 10px;" id="botonRegister">Registrarse</button> -->
 
-				<a class="btn text-light" href="login.html" style="padding-right: 10px; border-right: 1px solid #e2e2e2;" id="botonLogin">Iniciar Sesion</a>
-				<a class="btn text-light" href="register.html" style="padding-left: 10px;" id="botonRegister">Registrarse</a>
+				<a class="btn text-light" href="login.html" style="padding-right: 10px; border-right: 1px solid #e2e2e2;" id="botonLogin" aria-label="iniciar sesion">Iniciar Sesion</a>
+				<a class="btn text-light" href="register.html" style="padding-left: 10px;" id="botonRegister" aria-label="registrarse">Registrarse</a>
 			</div>
 		</span>
 	</div>
@@ -105,10 +103,35 @@
 
 <!-- Seccion de imagenes -->
 <div class="container-hero">
-	<div class="container hero">
-		<div class="carrusel">
-			<h2>FT</h2>
+	<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img src="img/BannerGaming.png" class="d-block w-100" alt="BannerGaming">
+			</div>
 		</div>
+		<div class="carousel-item">
+			<a href="#contenedor-productos">
+				<img title="Helldiver 2" src="img\BannerHell.png" class="d-block w-100" alt="bannerHelldiver2">
+			</a>
+		</div>
+		<div class="carousel-item">
+			<a href="#contenedor-productos">
+				<img title="2k27" src="img\Banner2k27.png" class="d-block w-100" alt="banner2k27">
+			</a>
+		</div>
+		<div class="carousel-item">
+			<a href="#contenedor-productos">
+				<img title="Bodycam" src="img\BannerBodycam.png" class="d-block w-100" alt="bannerBodycam">
+			</a>
+		</div>
+		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		</button>
 	</div>
 </div>
 

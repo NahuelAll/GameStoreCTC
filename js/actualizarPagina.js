@@ -1,18 +1,21 @@
 import { GestorProductos } from "./managers/GestorProductos.js";
 import { GestorVentas } from "./managers/GestorVentas.js";
 import { GestorCarrito } from "./managers/GestorCarrito.js";
+import { ManejadorStorage } from "./managers/ManejadorStorage.js";
 
 //solucion para evitar que muestre el stock viejo cuando se compra producto.
 export const gestorProductos = new GestorProductos(); 
 export const gestorVentas = new GestorVentas();
 export const gestorCarrito = new GestorCarrito(gestorProductos, gestorVentas);
+const storage = new ManejadorStorage();
 
 inicioProductos();
 
 function inicioProductos(){
-    if(gestorProductos.obtenerTodos().length > 0){
+    if(storage.existe("productoInicial_v1")){
         return; // si hay producto no borra lo que se creo
     }
+    storage.guardar("productoInicial_v1", true);
 
     let productosIniciales = [
         {

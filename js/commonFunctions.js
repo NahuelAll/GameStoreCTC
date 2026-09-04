@@ -14,9 +14,9 @@ window.leerDeStorage = leerDeStorage;
 
 //generarID (ID del usuario)
 function generarID(lista) {
-	if(!lista || lista.length === 0) {
+	if(!lista || lista.length === 0){
 		return 1;
-	 }
+	}
 	
 	let ultimo= lista[lista.length - 1];
 	return (ultimo.id) + 1;
@@ -28,10 +28,14 @@ function actualizarUsuarioActual(){
 	let session = leerDeStorage("sessionData", null);
 	let monstrar = document.getElementById("usuarioActual");
 
-	if (session){
+	if(!monstrar){
+		return;
+	}
+	
+	if(session){
 		monstrar.innerHTML = "<b>" + session.nombre + "</b>"
 	} else {
-		monstrar.innerHTML = "Invitado - <a href='./login.html'IniciarSession</a>";
+		monstrar.innerHTML = "<b> Invitado </b>";
 	}
 }
 window.actualizarUsuarioActual = actualizarUsuarioActual;

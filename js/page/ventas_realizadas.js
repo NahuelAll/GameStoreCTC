@@ -50,9 +50,9 @@ function renderizarTablaDeVentas(){
             "<td>" + venta.nombreUsuario + "</td>" + 
             "<td>" + fecha + "</td>" + 
             "<td>" + detalleItems + "</td>" + 
-            "<td>" + venta.totalBase.toFixed(2) + "</td>" + 
-            "<td>" + venta.totalIva.toFixed(2) + "</td>" + 
-            "<td>" + venta.totalFinal.toFixed(2) + "</td>" +
+            "<td>" + "$U " + venta.totalBase.toFixed(2) + "</td>" + 
+            "<td>" + "$U " +venta.totalIva.toFixed(2) + "</td>" + 
+            "<td>" + "$U " +venta.totalFinal.toFixed(2) + "</td>" +
             "</tr>";
     } 
 }
